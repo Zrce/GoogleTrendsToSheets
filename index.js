@@ -19,7 +19,7 @@ const matchInArray = (string, expressions) => {
 //Get real time trends  
 const getRttIdsForPush = async (geo, spreadsheetId) => { 
 
-    //Get already saved Ids
+    //Get already saved Ids to not add rows twice 
     const column0 = await readSheet(geo, spreadsheetId)
     
     //New Trends from Google Trends API
@@ -35,6 +35,7 @@ const getRttIdsForPush = async (geo, spreadsheetId) => {
     for (let i = 0; i < trendingStoriesArr.length; i++) {
         let matchAlreadySaved = matchInArray(trendingStoriesArr[i].id, column0)
 
+        //Feel free to add more from the API to your Google Sheet
         if(matchAlreadySaved == false) {
             let trendingStoriesRowForSheets = []
             trendingStoriesRowForSheets.push(trendingStoriesArr[i].id)
@@ -59,6 +60,7 @@ exports.startit = async (req, res) => {
       spreadsheetId = req
     }
 
+    //Edit here to add other countries. Add the Sheet to your spreadsheet 
     const trendingStoriesForSheetsDE =  await getRttIdsForPush("DE",spreadsheetId); 
     await writeGoogleSheet(trendingStoriesForSheetsDE,"DE",spreadsheetId)
 
