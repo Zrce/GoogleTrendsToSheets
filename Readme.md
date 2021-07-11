@@ -10,7 +10,6 @@ https://docs.google.com/spreadsheets/d/1GXd44Uvzu8rROpFIpFemk-ZpIP1o4qZMLgP2OM2s
 - https://cloud.google.com/scheduler
 - https://cloud.google.com/functions
 
-
 ## Setup
 ### In Google Cloud Platform:
 You need a project with:
@@ -19,18 +18,15 @@ You need a project with:
 - Google Scheduler API
 Create a service account json and download it 
 
-
 ### In Google Sheets 
 - Add the service accounts email with edit permission to a new created Google Spreadsheet 
 - Add the sheet id to .env.yaml and/or the local test file. You don't need to go with an .env.yaml in any case
 - Add Sheets e.g. DE, US, CH 
 
-
 ### Test in terminal
 Download service account users json and test: 
 - export GOOGLE_APPLICATION_CREDENTIALS="/Users/wio/Documents/GoogleTrendsToSheets/yourServiceAccountsJson.json"
 - node local_index.js
-
 
 ### Deploy a Cloud Function
 Login Google Cloud + Deploy:
