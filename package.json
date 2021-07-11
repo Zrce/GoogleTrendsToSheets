@@ -1,0 +1,16 @@
+{
+  "name": "googletrendstosheets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-trends-api": "^4.9.2",
+    "googleapis": "^81.0.0",
+    "moment": "^2.29.1"
+  }
+}
