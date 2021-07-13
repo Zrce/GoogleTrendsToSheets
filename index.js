@@ -26,6 +26,9 @@ const getRttIdsForPush = async (geo, spreadsheetId) => {
     var currentTimestamp = moment().unix();
     const req = { geo: geo };
     let res = await googleTrends.realTimeTrends(req); //Request Google Trends
+
+    console.log(res)
+
     res = JSON.parse(res);
     const trendingStoriesArr = res.storySummaries.trendingStories;
     
@@ -53,22 +56,48 @@ const getRttIdsForPush = async (geo, spreadsheetId) => {
 }
 
 exports.startit = async (req, res) => {
-    let spreadsheetId = process.env.SHEET_ID
-
-    //Local test
-    if(spreadsheetId === undefined) {
-      spreadsheetId = req
-    }
-
     //Edit here to add other countries. Add the Sheet to your spreadsheet 
-    const trendingStoriesForSheetsDE =  await getRttIdsForPush("DE",spreadsheetId); 
-    await writeGoogleSheet(trendingStoriesForSheetsDE,"DE",spreadsheetId)
+    // try {
+    //     const trendingStoriesForSheetsCH =  await getRttIdsForPush("CH",process.env.SHEET_ID_CH); 
+    //     await writeGoogleSheet(trendingStoriesForSheetsCH,"CH",process.env.SHEET_ID_CH)
+    // } catch (error) {
+    //     console.log(error) 
+    // }
 
-    const trendingStoriesForSheetsUS =  await getRttIdsForPush("US",spreadsheetId); 
-    await writeGoogleSheet(trendingStoriesForSheetsUS,"US",spreadsheetId)
+    // try {
+    //     const trendingStoriesForSheetsDE =  await getRttIdsForPush("DE",process.env.SHEET_ID_DE); 
+    //     await writeGoogleSheet(trendingStoriesForSheetsDE,"DE",process.env.SHEET_ID_DE)    
+    // } catch (error) {
+    //     console.log(error)
+    // }
 
-    const trendingStoriesForSheetsCH =  await getRttIdsForPush("CH",spreadsheetId); 
-    await writeGoogleSheet(trendingStoriesForSheetsCH,"CH",spreadsheetId)
+    // try {
+    //     const trendingStoriesForSheetsFR =  await getRttIdsForPush("FR",process.env.SHEET_ID_FR); 
+    //     await writeGoogleSheet(trendingStoriesForSheetsFR,"FR",process.env.SHEET_ID_FR)
+    // } catch (error) {
+    //     console.log(error)       
+    // }
+
+    // try {
+    //     const trendingStoriesForSheetsPL =  await getRttIdsForPush("PL",process.env.SHEET_ID_PL); 
+    //     await writeGoogleSheet(trendingStoriesForSheetsPL,"PL",process.env.SHEET_ID_PL)
+    // } catch (error) {
+    //     console.log(error)       
+    // }
+
+    // try {
+    //     const trendingStoriesForSheetsGB =  await getRttIdsForPush("GB",process.env.SHEET_ID_GB); 
+    //     await writeGoogleSheet(trendingStoriesForSheetsGB,"GB",process.env.SHEET_ID_GB)
+    // } catch (error) {
+    //     console.log(error)        
+    // }
+
+    try {
+        const trendingStoriesForSheetsUS =  await getRttIdsForPush("US",process.env.SHEET_ID_US); 
+        await writeGoogleSheet(trendingStoriesForSheetsUS,"US",process.env.SHEET_ID_US) 
+    } catch (error) {
+        console.log(error)        
+    }
 
     res.send("done");
 }
